@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="buildSeats">
-      <change beforePath="$PROJECT_DIR$/js/venue.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/venue.js" afterDir="false" />
-    </list>
+    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="buildSeats" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +67,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="html skeleton and initial setup" />
     <MESSAGE value="levels, blocks, price categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="levels, blocks, price categories" />
+    <MESSAGE value="buildSeats" />
+    <option name="LAST_COMMIT_MESSAGE" value="buildSeats" />
   </component>
 </project>
