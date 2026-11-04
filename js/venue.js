@@ -52,3 +52,42 @@ const UNAVAILABLE_SEATS = new Set([
   "balcony-F9", "balcony-F10"
 ]);
 
+
+function buildSeats() {
+    const seats = [];
+
+    VENUE.levels.forEach(level => {
+        level.rows.forEach(row => {
+            let number = 1;
+
+            level.blocks.forEach(block => {
+                const categoryId = level.rowCategoryOverrides[row] || block.category;
+                const category = PRICE_CATEGORIES[categoryId];
+
+                for (let i = 0; i < block.seats; i++) {
+                    const id = `${level.id}-${row}${number}`;
+                    seats.push({
+                        id: id,
+                        levelId: level.id,
+                        levelName: level.name,
+                        blockId: block.id,
+                        blockName: block.name,
+                        row: row,
+                        number: number,
+                        categoryId: categoryId,
+                        categoryName: category.name,
+                        price: category.price,
+                        unavailable: UNAVAILABLE_SEATS.has(id)
+                    });
+                    number++;
+                }
+            });
+        });
+    });
+
+    return seats;
+}
+
+function formatPrice(price) {
+    return `${price} ${CURRENCY}`;
+}
