@@ -31,12 +31,22 @@ function createBlock(level, row, block) {
   return blockElement;
 }
 
+function createRowLabel(row) {
+  const label = document.createElement("span");
+  label.className = "row-label";
+  label.textContent = row;
+  label.setAttribute("aria-hidden", "true");
+  return label;
+}
+
 function createRow(level, row) {
   const rowElement = document.createElement("div");
   rowElement.className = "row";
   rowElement.dataset.row = row;
 
+  rowElement.appendChild(createRowLabel(row));
   level.blocks.forEach(block => rowElement.appendChild(createBlock(level, row, block)));
+  rowElement.appendChild(createRowLabel(row));
 
   return rowElement;
 }
@@ -60,4 +70,24 @@ function renderVenue() {
   VENUE.levels.forEach(level => venueElement.appendChild(createLevel(level)));
 }
 
+function renderPriceLegend() {
+  const legend = document.getElementById("price-legend");
+
+  Object.values(PRICE_CATEGORIES)
+    .sort((a, b) => b.price - a.price)
+    .forEach(category => {
+      const item = document.createElement("li");
+      item.className = "price-pill";
+
+      const dot = document.createElement("span");
+      dot.className = "price-dot";
+      dot.style.background = `var(${category.colorVar})`;
+
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(`${category.name} ${formatPrice(category.price)}`));
+      legend.appendChild(item);
+    });
+}
+
 renderVenue();
+renderPriceLegend();
