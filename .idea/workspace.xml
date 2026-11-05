@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="color scheme and font change" />
+    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="seat state" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +70,8 @@
     <MESSAGE value="buildSeats" />
     <MESSAGE value="levels, rows, blocks and seat buttons" />
     <MESSAGE value="color scheme and font change" />
-    <option name="LAST_COMMIT_MESSAGE" value="color scheme and font change" />
+    <MESSAGE value="row labels, aisle spacing and price legend  font change" />
+    <MESSAGE value="seat state" />
+    <option name="LAST_COMMIT_MESSAGE" value="seat state" />
   </component>
 </project>

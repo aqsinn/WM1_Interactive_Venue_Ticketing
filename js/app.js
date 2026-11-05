@@ -1,5 +1,9 @@
 const seats = buildSeats();
+const seatsById = new Map(seats.map(seat => [seat.id, seat]));
+const seatButtons = new Map();
 const venueElement = document.getElementById("venue");
+
+let inspectedSeatId = null;
 
 function createSeatButton(seat) {
   const button = document.createElement("button");
@@ -15,6 +19,8 @@ function createSeatButton(seat) {
     "aria-label",
     `${seat.levelName}, row ${seat.row}, seat ${seat.number}, ${seat.categoryName}, ${formatPrice(seat.price)}${status}`
   );
+
+  seatButtons.set(seat.id, button);
 
   return button;
 }
@@ -88,6 +94,33 @@ function renderPriceLegend() {
       legend.appendChild(item);
     });
 }
+
+function setSeatState(seatId, state) {
+  seatButtons.get(seatId).dataset.state = state;
+}
+
+function inspectSeat(seatId) {
+  const seat = seatsById.get(seatId);
+
+  if (!seat || seat.unavailable || seatId === inspectedSeatId) {
+    return;
+  }
+
+  if (inspectedSeatId) {
+    setSeatState(inspectedSeatId, "available");
+  }
+
+  inspectedSeatId = seatId;
+  setSeatState(seatId, "inspected");
+}
+
+venueElement.addEventListener("click", event => {
+  const button = event.target.closest(".seat");
+
+  if (button) {
+    inspectSeat(button.dataset.seatId);
+  }
+});
 
 renderVenue();
 renderPriceLegend();
