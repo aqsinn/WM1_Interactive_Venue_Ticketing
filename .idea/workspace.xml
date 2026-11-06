@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="seat inspection" />
+    <list default="true" id="c4830120-3679-4e1a-9247-5ca66df1d484" name="Changes" comment="inspecting sold seats and show availability status" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,6 +74,7 @@
     <MESSAGE value="seat state" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="seat inspection" />
-    <option name="LAST_COMMIT_MESSAGE" value="seat inspection" />
+    <MESSAGE value="inspecting sold seats and show availability status" />
+    <option name="LAST_COMMIT_MESSAGE" value="inspecting sold seats and show availability status" />
   </component>
 </project>

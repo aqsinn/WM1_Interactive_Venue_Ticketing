@@ -3,6 +3,7 @@ const seatsById = new Map(seats.map(seat => [seat.id, seat]));
 const seatButtons = new Map();
 const venueElement = document.getElementById("venue");
 const detailsElement = document.getElementById("seat-details");
+const addToCartButton = document.getElementById("add-to-cart");
 
 let inspectedSeatId = null;
 
@@ -130,6 +131,10 @@ function renderSeatDetails(seat) {
   detailsElement.replaceChildren(list);
 }
 
+function updateAddToCartButton(seat) {
+  addToCartButton.disabled = !seat || seat.unavailable;
+}
+
 function setSeatState(seatId, state) {
   seatButtons.get(seatId).dataset.state = state;
 }
@@ -168,6 +173,7 @@ function inspectSeat(seatId) {
   }
 
   renderSeatDetails(seat);
+  updateAddToCartButton(seat);
 }
 
 venueElement.addEventListener("click", event => {
