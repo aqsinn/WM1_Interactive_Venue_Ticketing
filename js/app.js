@@ -2,6 +2,7 @@ const seats = buildSeats();
 const seatsById = new Map(seats.map(seat => [seat.id, seat]));
 const seatButtons = new Map();
 const venueElement = document.getElementById("venue");
+const detailsElement = document.getElementById("seat-details");
 
 let inspectedSeatId = null;
 
@@ -95,23 +96,78 @@ function renderPriceLegend() {
     });
 }
 
+function renderSeatDetails(seat) {
+  const list = document.createElement("dl");
+  list.className = "details-list";
+
+  const fields = [
+    ["Section", `${seat.levelName} ${seat.blockName}`],
+    ["Row", seat.row],
+    ["Seat", seat.number],
+    ["Category", seat.categoryName],
+    ["Status", seat.unavailable ? "Unavailable" : "Available"],
+    ["Price", formatPrice(seat.price)]
+  ];
+
+  fields.forEach(([label, value]) => {
+    const wrapper = document.createElement("div");
+
+    const term = document.createElement("dt");
+    term.textContent = label;
+
+    const description = document.createElement("dd");
+    description.textContent = value;
+
+    if (label === "Status" && seat.unavailable) {
+      description.className = "status-unavailable";
+    }
+
+    wrapper.appendChild(term);
+    wrapper.appendChild(description);
+    list.appendChild(wrapper);
+  });
+
+  detailsElement.replaceChildren(list);
+}
+
 function setSeatState(seatId, state) {
   seatButtons.get(seatId).dataset.state = state;
+}
+
+function clearInspection() {
+  if (!inspectedSeatId) {
+    return;
+  }
+
+  const previousSeat = seatsById.get(inspectedSeatId);
+  const previousButton = seatButtons.get(inspectedSeatId);
+
+  if (previousSeat.unavailable) {
+    delete previousButton.dataset.inspected;
+  } else {
+    setSeatState(inspectedSeatId, "available");
+  }
+
+  inspectedSeatId = null;
 }
 
 function inspectSeat(seatId) {
   const seat = seatsById.get(seatId);
 
-  if (!seat || seat.unavailable || seatId === inspectedSeatId) {
+  if (!seat || seatId === inspectedSeatId) {
     return;
   }
 
-  if (inspectedSeatId) {
-    setSeatState(inspectedSeatId, "available");
+  clearInspection();
+  inspectedSeatId = seatId;
+
+  if (seat.unavailable) {
+    seatButtons.get(seatId).dataset.inspected = "true";
+  } else {
+    setSeatState(seatId, "inspected");
   }
 
-  inspectedSeatId = seatId;
-  setSeatState(seatId, "inspected");
+  renderSeatDetails(seat);
 }
 
 venueElement.addEventListener("click", event => {

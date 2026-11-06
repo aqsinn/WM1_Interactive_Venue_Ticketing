@@ -206,6 +206,8 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .seat[data-state="in-cart"] { --seat-color: var(--seat-in-cart); }
 
+.seat[data-inspected="true"] { box-shadow: 0 0 0 2px #000; }
+
 .seat[data-state="inspected"] {
   --seat-color: var(--seat-inspected);
   color: #000;
@@ -255,3 +257,18 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   border-radius: 50%;
   display: inline-block;
 }
+
+.details-list { margin: 0; }
+
+.details-list div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.details-list dt { color: var(--text-muted); }
+.details-list dd { margin: 0; font-weight: 600; }
+.details-list div:last-child dd { font-size: 1.15rem; }
+
+.details-list .status-unavailable { color: var(--tier-vip); }
